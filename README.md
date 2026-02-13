@@ -1,3 +1,4 @@
+README.md (FULL FILE)
 # Dummy systemd Service
 
 This project demonstrates how to create, configure, and manage a custom **systemd service** on Linux.  
@@ -37,3 +38,58 @@ The goal of this project is to gain hands-on experience with:
 ```bash
 git clone https://github.com/your-username/dummy-systemd-service.git
 cd dummy-systemd-service
+2. Create service directory
+sudo mkdir -p /opt/dummy-service
+sudo cp dummy.sh /opt/dummy-service/
+sudo chmod +x /opt/dummy-service/dummy.sh
+3. Create log file
+sudo touch /var/log/dummy-service.log
+sudo chmod 644 /var/log/dummy-service.log
+4. Install systemd service
+sudo cp dummy.service /etc/systemd/system/dummy.service
+sudo systemctl daemon-reload
+Service Management Commands
+Start the service
+sudo systemctl start dummy
+Stop the service
+sudo systemctl stop dummy
+Enable service at boot
+sudo systemctl enable dummy
+Disable service at boot
+sudo systemctl disable dummy
+Check service status
+sudo systemctl status dummy
+Viewing Logs
+Live logs via journalctl
+sudo journalctl -u dummy -f
+View log file directly
+tail -f /var/log/dummy-service.log
+Auto-Restart Testing
+
+Kill the service process manually:
+
+ps aux | grep dummy.sh
+sudo kill -9 <PID>
+
+Check status again:
+
+sudo systemctl status dummy
+
+The service should restart automatically, proving systemd fault recovery is working.
+
+Skills Demonstrated
+
+Linux system administration
+
+systemd service creation
+
+Process supervision and recovery
+
+Logging and monitoring
+
+Production-style service management
+
+Reference
+
+Project inspiration and requirements from:
+https://roadmap.sh/projects/dummy-systemd-service
